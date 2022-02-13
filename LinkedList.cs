@@ -89,7 +89,7 @@ namespace DataStructure{
             mylinkedlist.add(9);
             mylinkedlist.add(7);
             mylinkedlist.add(15);
-            mylinkedlist.printList();
+            mylinkedlist.printList(); // [3, 4, 5, 9, 7, 15]
         }
 
     }
