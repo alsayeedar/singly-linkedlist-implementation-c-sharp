@@ -16,7 +16,8 @@ namespace DataStructure{
             public Node head = null;
             public Node tail = null;
             public int size = 0;
-
+            
+            // add item function
             public void add(int data){
                 Node node = new Node(data);
                 this.size++;
@@ -28,6 +29,8 @@ namespace DataStructure{
                     this.tail = node;
                 }
             }
+            
+            // remove item function
             public void remove(int node_data){
                 if(this.size > 1){
                     Node node = this.head;
@@ -62,6 +65,8 @@ namespace DataStructure{
                     }
                 }
             }
+            
+            // update item function
             public void update(int node_data, int new_node_data){
                 Node node = this.head;
                 while(node != null){
@@ -72,6 +77,7 @@ namespace DataStructure{
                     node = node.next;
                 }
             }
+            
             public int? getHead(){
                 if(this.head != null){
                     return this.head.data;
