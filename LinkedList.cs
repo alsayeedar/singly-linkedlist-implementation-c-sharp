@@ -1,3 +1,4 @@
+#pragma warning disable // this line used to hide warnings
 using System;
 namespace DataStructure{
     public class Program{
@@ -27,27 +28,46 @@ namespace DataStructure{
                     this.tail = node;
                 }
             }
-            public void remove(int ndata){
+            public void remove(int node_data){
+                if(this.size > 1){
+                    Node node = this.head;
+                    Node nprev = null;
+                    while(node != null){
+                        if(node.data == node_data){
+                            if(node == this.head){
+                                this.head = node.next;
+                                this.size--;
+                                break;
+                            }else if(node == this.tail){
+                                int i = 1;
+                                Node node2 = this.head;
+                                Node prev = null;
+                                while(i < this.size){
+                                    prev = node2;
+                                    i++;
+                                    node2 = node2.next;
+                                }
+                                this.tail = prev;
+                                this.tail.next = null;
+                                this.size--;
+                                break;
+                            }else{
+                                nprev.next = node.next;
+                                this.size--;
+                                break;
+                            }
+                        }
+                        nprev = node;
+                        node = node.next;
+                    }
+                }
+            }
+            public void update(int node_data, int new_node_data){
                 Node node = this.head;
                 while(node != null){
-                    if(node.data == ndata){
-                        if(node == this.head){
-                            this.head = node.next;
-                            this.size--;
-                        }
-                        if(node == this.tail){
-                            int i = 1;
-                            Node node2 = this.head;
-                            Node prev = null;
-                            while(i < this.size){
-                                prev = node2;
-                                i++;
-                                node2 = node2.next;
-                            }
-                            this.tail = prev;
-                            this.tail.next = null;
-                            this.size--;
-                        }
+                    if(node.data == node_data){
+                        node.data = new_node_data;
+                        break;
                     }
                     node = node.next;
                 }
@@ -89,7 +109,22 @@ namespace DataStructure{
             mylinkedlist.add(9);
             mylinkedlist.add(7);
             mylinkedlist.add(15);
-            mylinkedlist.printList(); // [3, 4, 5, 9, 7, 15]
+            mylinkedlist.printList();
+            mylinkedlist.remove(3);
+            mylinkedlist.printList();
+            mylinkedlist.remove(9);
+            mylinkedlist.printList();
+            mylinkedlist.remove(15);
+            mylinkedlist.printList();
+            mylinkedlist.update(7, 8);
+            mylinkedlist.printList();
+            /* Output:
+            [3, 4, 5, 9, 7, 15]
+            [4, 5, 9, 7, 15]
+            [4, 5, 7, 15]
+            [4, 5, 7]
+            [4, 5, 8]
+            */
         }
 
     }
